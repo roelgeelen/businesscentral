@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 
 @Component
-public class CustomResponseErrorHandler implements ResponseErrorHandler {
+public class CustomBCResponseErrorHandler implements ResponseErrorHandler {
     @Override
     public boolean hasError(ClientHttpResponse clientHttpResponse) throws IOException {
         HttpStatus status = clientHttpResponse.getStatusCode();

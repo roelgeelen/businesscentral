@@ -1,6 +1,6 @@
 package com.differentdoors.businesscentral.configuration;
 
-import com.differentdoors.businesscentral.exceptions.CustomResponseErrorHandler;
+import com.differentdoors.businesscentral.exceptions.CustomBCResponseErrorHandler;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
@@ -26,7 +26,7 @@ public class RestTemplateConfigurationOpenProject {
     @Value("${different_doors.business_central.scope}")
     protected String scope;
 
-    @Bean
+    @Bean(name = "BusinessCentralOAuth")
     protected ClientCredentialsResourceDetails oAuthDetails() {
         ClientCredentialsResourceDetails c = new ClientCredentialsResourceDetails();
         c.setAccessTokenUri(accessTokenUri);
@@ -48,8 +48,8 @@ public class RestTemplateConfigurationOpenProject {
                         .setCookieSpec(CookieSpecs.STANDARD).build())
                 .build();
         requestFactory.setHttpClient(httpClient);
+        restTemplate.setErrorHandler(new CustomBCResponseErrorHandler());
         restTemplate.setRequestFactory(requestFactory);
-        restTemplate.setErrorHandler(new CustomResponseErrorHandler());
         return restTemplate;
     }
 }

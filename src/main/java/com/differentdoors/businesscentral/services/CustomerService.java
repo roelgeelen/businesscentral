@@ -31,6 +31,15 @@ public class CustomerService {
     @Qualifier("BusinessCentral")
     private RestTemplate restTemplate;
 
+    public Customer getCustomer(String id) {
+        Map<String, String> urlParams = new HashMap<>();
+        urlParams.put("path", "HUB_Customers('K" + id + "')");
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(URL);
+
+        return restTemplate.getForObject(builder.buildAndExpand(urlParams).toUri(), Customer.class);
+    }
+
     public void createCustomer(Customer customer) throws JsonProcessingException {
         Map<String, String> urlParams = new HashMap<>();
         urlParams.put("path", "HUB_Customers");
