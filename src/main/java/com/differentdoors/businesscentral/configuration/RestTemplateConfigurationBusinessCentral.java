@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Configuration
-public class RestTemplateConfigurationOpenProject {
+public class RestTemplateConfigurationBusinessCentral {
     @Value("${different_doors.business_central.token_url}")
     protected String accessTokenUri;
     @Value("${different_doors.business_central.client_id}")

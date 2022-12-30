@@ -33,4 +33,8 @@ public class Customer {
     private String paymentTermsCode;
     private String taxAreaID;
     private boolean taxLiable;
+
+    public void setNo(String no) {
+        this.no = "K" + no;
+    }
 }
